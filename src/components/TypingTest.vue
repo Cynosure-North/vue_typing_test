@@ -1,6 +1,6 @@
 <template>
 	<div class="test" ref="typingTest"
-		tabindex="0" @keydown="handleKeypress" >
+		tabindex="0" @keydown="handleKeypress">
 		<WordSet
 			:wordList="text"
 			:typedWordList="typedWordList"
@@ -12,7 +12,11 @@
 	import { ref, useTemplateRef, onMounted } from 'vue';
 	import WordSet from './WordSet.vue';
 
-	const props = defineProps({text: Array<string>});
+	const props = defineProps({
+		text: {
+			type: Array<string>,
+			required: true,
+		} });
 	const emit = defineEmits(['results_ready']);
 
 	const typingTest = useTemplateRef('typingTest');
@@ -21,7 +25,7 @@
 	const typedWordList = ref<string[]>([""]);
 	const activeWordIndex = ref(0);
 
-	const results = ref(null);
+	const results = ref<Object>({});
 	const totalErrors = ref(0);
 	const startTime = ref(-1); // -1: waiting, >0: typing, -2: complete
 	const keyLog = ref<{ key: string; time: number }[]>([]);
@@ -29,18 +33,20 @@
 
 
 	const handleKeypress = (e: KeyboardEvent) => {
+		if (props.text === null) { return; }
+
 		if (startTime.value === -2) {
 			return;
 		}
 
 		e.preventDefault();
 
-		const currWord = typedWordList.value[typedWordList.value.length - 1];
-
+		const currWord = typedWordList.value[typedWordList.value.length - 1] || '';
+		
 		if (e.key === " ") {
 			if (typedWordList.value.length !== props.text.length) {
-				if (props.text[activeWordIndex.value].length !== currWord?.length) {
-					totalErrors.value = totalErrors.value + (props.text[activeWordIndex.value].length - currWord.length);
+				if (props.text[activeWordIndex.value]?.length !== currWord?.length) {
+					totalErrors.value = totalErrors.value + ((props.text[activeWordIndex.value]?.length || 0) - currWord.length);
 				}
 				typedWordList.value = [...typedWordList.value, ""];
 				activeWordIndex.value++;
@@ -94,7 +100,7 @@
 			keyLog.value = [...keyLog.value, { key: e.key, time: Date.now() }];
 
 			// If they've reached the end
-			if (typedWordList.value.length === props.text.length && (currWord?.length || 0) === props.text[activeWordIndex.value].length - 1) {
+			if (typedWordList.value.length === props.text.length && (currWord?.length || 0) === (props.text[activeWordIndex.value]?.length || 0) - 1) {
 				const secondsTyping = (Date.now() - startTime.value) / 1000;
 				startTime.value = -2; // Lock out any future changes
 
@@ -140,7 +146,7 @@
 
 
 	onMounted(() => {
-			typingTest.value.focus();
+			typingTest.value?.focus();
 
 		// TODO Prevent clicking out - NiceGUI handles this differently
 		// For a NiceGUI custom component, user interaction within the component

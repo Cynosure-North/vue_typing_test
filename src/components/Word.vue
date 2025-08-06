@@ -22,9 +22,18 @@
 	import Caret from './Caret.vue';
 
 	const props = defineProps({
-		word: String,
-		typedWord: String,
-		wordStatus: String });
+		word: {
+			type: String,
+			required: true
+		},
+		typedWord: {
+			type: String,
+			required: true
+		},
+		wordStatus: {
+			type: String,
+			required: true
+		} });
 	const ref = useTemplateRef('ref');
 	
 	type LetterStatus = "passive" | "active" | "incorrect" | "correct";
@@ -58,7 +67,7 @@
 	onUpdated(async() => {
 		if (props.wordStatus === "active") {
 			await nextTick();
-			ref.value.scrollIntoView({ behavior: "smooth", block: "center" });
+			ref.value?.scrollIntoView({ behavior: "smooth", block: "center" });
 		}
 	})
 </script>

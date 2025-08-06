@@ -15,9 +15,18 @@
 	type WordStatus = "passive" | "active" | "incorrect" | "correct";
 
 	const props = defineProps({
-		wordList: Array<string>,
-		typedWordList: Array<string>,
-		activeWordIndex: Number });
+		wordList: {
+			type: Array<string>,
+			required: true
+		},
+		typedWordList: {
+			type: Array<string>,
+			required: true
+		},
+		activeWordIndex: {
+			type: Number,
+			required: true,
+		} });
 
 	const getWordStatus = (word: string, i: number): WordStatus => {
 		if (props.activeWordIndex === i) return "active"
