@@ -5,11 +5,18 @@ import dts from "vite-plugin-dts";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), dts(),],
+  plugins: [vue({
+    customElement: true,
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag == 'typing-test'
+      }
+    }
+  }), dts(),],
   base: "./",
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: resolve(__dirname, "src/index.js"),
       name: "TestComponent",
       fileName: "typing-test",
     },

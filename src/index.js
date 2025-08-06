@@ -1,10 +1,10 @@
 import TypingTest from './components/TypingTest.vue'
-import { createApp } from 'vue'
+import { createApp, defineCustomElement } from 'vue'
 
-export { TypingTest }
+// Convert the SFC to a custom element constructor
+const CustomElementConstructor = defineCustomElement(TypingTest)
+// Register the custom element
+customElements.define('typing-test', CustomElementConstructor)
 
-if (import.meta.env.MODE === 'development') {
-	const app = createApp(TypingTest, {text: ["this", "is", "for", "testing"]})
-
-	app.mount('#app')
-}
+// TODO: Handle emit/events
+// https://vuejs.org/guide/extras/web-components.html#events
