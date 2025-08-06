@@ -1,6 +1,13 @@
 {
   "name": "vue-typing-test",
   "version": "0.4.0",
+  "keywords": [
+    "vue",
+    "vue3",
+    "custom element",
+    "typing test"
+  ],
+  "homepage": "https://github.com/Cynosure-North/vue_typing_test",
   "main": "./dist/typing-test.umd.js",
   "module": "./dist/typing-test.js",
   "types": "./dist/index.d.ts",
@@ -19,11 +26,6 @@
     "dev": "vite",
     "serve": "vite preview"
   },
-  "keywords": [
-    "vue",
-    "vue3",
-    "component"
-  ],
   "author": "North",
   "peerDependencies": {
     "vue": "^3.0.0"
