@@ -14,6 +14,9 @@ export default defineConfig({
     }
   }), dts(),],
   base: "./",
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+  },
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.js"),
@@ -21,7 +24,6 @@ export default defineConfig({
       fileName: "typing-test",
     },
     rollupOptions: {
-      external: ["vue"],
       output: {
         globals: {
           vue: "Vue",
