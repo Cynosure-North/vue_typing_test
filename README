@@ -1,4 +1,4 @@
-Defines a custom element to implement a typing test
+A typing test as a standalone custom element.
 
 Usage
 <script src="https://unpkg.com/vue-typing-test"></script>

@@ -122,7 +122,7 @@
 				};
 				
 				emit("results_ready", { results	: results.value });
-				console.log(results.value);
+				// console.log(results.value);
 			}
 		}
 	};

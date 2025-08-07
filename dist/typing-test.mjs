@@ -4163,7 +4163,7 @@ const $n = {
             wpm: ve,
             text_length: o.join("").length + (o.length - 1),
             keystroke_log: w.value
-          }, r("results_ready", { results: h.value }), console.log(h.value);
+          }, r("results_ready", { results: h.value });
         }
       }
     };
@@ -4189,5 +4189,5 @@ const $n = {
       }, null, 8, ["wordList", "typedWordList", "activeWordIndex"])
     ], 544));
   }
-}), El = ".test[data-v-a7b349b2]{margin:0 auto;height:4.2lh;overflow:hidden;outline:none;transition:color .5s ease;font-family:monospace;font-size:24px}.test[data-v-a7b349b2]:focus-within{filter:none}", Ol = /* @__PURE__ */ is(Al, [["styles", [El]], ["__scopeId", "data-v-a7b349b2"]]), Pl = /* @__PURE__ */ ul(Ol);
+}), El = ".test[data-v-93c2aa7d]{margin:0 auto;height:4.2lh;overflow:hidden;outline:none;transition:color .5s ease;font-family:monospace;font-size:24px}.test[data-v-93c2aa7d]:focus-within{filter:none}", Ol = /* @__PURE__ */ is(Al, [["styles", [El]], ["__scopeId", "data-v-93c2aa7d"]]), Pl = /* @__PURE__ */ ul(Ol);
 customElements.define("typing-test", Pl);
