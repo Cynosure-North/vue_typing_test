@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-	import { ref, useTemplateRef, onMounted } from 'vue';
+	import { nextTick, onMounted, ref, useTemplateRef } from 'vue';
 	import WordSet from './WordSet.vue';
 
 	const props = defineProps({
@@ -32,6 +32,12 @@
 	const keyLog = ref<{ key: string; time: number }[]>([]);
 
 
+	onMounted(async () => {
+		await nextTick()
+		typingTest.value?.focus();
+
+		document.addEventListener('click', () => typingTest.value?.focus())
+	})
 
 	const handleKeypress = (e: KeyboardEvent) => {
 		if (startTime.value === -2) {
@@ -126,31 +132,6 @@
 			}
 		}
 	};
-
-
-	const getResults = async () => {
-		if (results.value) {
-			return results.value 
-		}
-		else {
-			while (true) {
-				await new Promise(resolve => setTimeout(resolve, 10_000));
-				if (results.value) {
-					return results
-				}
-			}
-		}
-	}
-	defineExpose({getResults});
-
-
-	onMounted(() => {
-			typingTest.value?.focus();
-
-		// TODO Prevent clicking out - NiceGUI handles this differently
-		// For a NiceGUI custom component, user interaction within the component
-		// is usually contained. You wouldn't need `window.parent.document.addEventListener`.
-	});
 </script>
 
 <style scoped>

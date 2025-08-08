@@ -2,7 +2,7 @@
 	<div className="caret" :style="{ left: offset + 'ch'}"></div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 	defineProps({
 		offset: Number
 	})

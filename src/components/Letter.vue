@@ -2,7 +2,7 @@
 	<div :style="{color: color}">{{char}}</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 	defineProps({
 		char: String,
 		color: String })
