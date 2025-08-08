@@ -1,5 +1,4 @@
 <template>
-	<!-- TODO: Style not working -->
 	<div class="word" ref="ref">
 		<Letter
 			v-for="(char, i) in word"
