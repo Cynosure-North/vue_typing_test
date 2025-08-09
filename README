@@ -2,4 +2,4 @@ A typing test as a standalone custom element.
 
 Usage
 <script src="https://unpkg.com/vue-typing-test"></script>
-`<typing-test text="this is a test, for testing"></typing-test>`
+`<typing-test>This is a test, for tetyping-test>`
